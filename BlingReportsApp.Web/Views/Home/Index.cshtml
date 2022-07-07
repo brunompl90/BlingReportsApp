@@ -1,0 +1,171 @@
+﻿@using BlingReportsApp.Application.Filters
+@using BlingReportsApp.Domain.ViewModels
+@using BlingReportsApp.Web.Reports
+@using DevExpress.AspNetCore
+@using Microsoft.AspNetCore.Localization
+
+@model List<PedidoReportViewModel>;
+
+@{
+    ViewData["Title"] = "Relatório";
+}
+<form id="form" asp-action="GetPedidosViewModel" class="no-print" style="margin-bottom: 20px;">
+    <div class="dx-field">
+        <div class="dx-field-label">Situacões:</div>
+        <div class="dx-field-value">
+            @(Html.DevExtreme().SelectBox().Name("IdSituacao")
+            .ID("idSituacao")
+            .DataSource(d => d.Mvc().LoadAction("GetSituacoes").Key("Id"))
+            .DisplayExpr("Descricao")
+            .ValueExpr("Id")
+            .Value(ViewData["IdSituacao"])
+            )
+        </div>
+    </div>
+    <div class="dx-field">
+        <div class="dx-field-label">Data Emissão De:</div>
+        <div class="dx-field-value">
+            @(Html.DevExtreme().DateBox().Name("DataInicio")
+            .ID("emissaoDataInicio")
+            .Type(DateBoxType.Date)
+            .DisplayFormat("dd/MM/yyyy")
+            .Value(Convert.ToDateTime(ViewData["DataInicio"]))
+            )
+        </div>
+    </div>
+    <div class="dx-field">
+        <div class="dx-field-label">Data Emissão Ate:</div>
+        <div class="dx-field-value">
+            @(Html.DevExtreme().DateBox().Name("DataFim")
+            .ID("emissaoDataFim")
+            .Type(DateBoxType.Date)
+            .DisplayFormat("dd/MM/yyyy")
+            .Value(Convert.ToDateTime(ViewData["DataFim"]))
+            )
+        </div>
+    </div>
+    <div class="container" style="padding: 0;">
+        @(Html.DevExtreme().Button().OnInitialized("OnInitialise")
+            .ID("buttonFilter")
+            .Text("Filtrar Pedidos")
+            .Type(ButtonType.Success)
+            .UseSubmitBehavior(true)
+            )
+        @(Html.DevExtreme().Button().OnInitialized("OnInitialise")
+            .ID("buttonPrint")
+            .Text("Imprimir")
+            .Type(ButtonType.Default)
+            .OnClick("printReport")
+            )
+    </div>
+    
+
+</form>
+
+@(Html.DevExtreme().LoadPanel()
+    .ID("loadPanel")
+    .ShadingColor("rgba(0,0,0,0.4)")
+    //.Position(p => p.Of("#employee"))
+    .Visible(false)
+    .ShowIndicator(true)
+    .ShowPane(true)
+    .Shading(true)
+    .CloseOnOutsideClick(false)
+    .OnShown("loadPanel_shown")
+    .OnHidden("loadPanel_hidden")
+    )
+
+@if (Model != null)
+{
+   
+    var count = 1;
+    @foreach (var item in Model)
+    {
+        
+        <div class="row-content container @(count % 4 == 0 ? "row-break-after" : "")">
+            <table style="width: 100%">
+                <tr class="pedido-row">
+                    <td colspan="1" style="width: 33%"><div class="table-display"><span class="pedido-title botton-align">Pedido</span> <span class="pedido-codigo-title botton-align">@item.Codigo</span></div></td>
+                    <td colspan="2">
+                        <img src="@item.LinkCodeBar" alt="" />
+                    </td>
+                </tr>
+                <tr class="nome-row">
+                    <td colspan="1" class="nome-column"><span class="nome-title">Nome</span></td>
+                    <td colspan="2"><span class="nome-descricao-title">@item.Nome</span></td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="padding:0">
+                        <table class="table-details page-break">
+                            <thead>
+                                <tr>
+                                    <td style="width: 19%">Endereço</td>
+                                    <td style="width: 15%">QTD</td>
+                                    <td style="width: 10%">SKU</td>
+                                    <td>Descrição</td>
+                                </tr>
+                            </thead>
+                            <tbody class="tbody-details">
+                                @for (var i = 0; i < item.Produtos.Count; i++)
+                                {
+                                    <tr>
+                                        <td>@item.Produtos[i].Localizacao</td>
+                                        <td>@item.Produtos[i].Quantidade</td>
+                                        <td>@item.Produtos[i].SKU</td>
+                                        <td>@item.Produtos[i].Descricao</td>
+                                    </tr>
+                                }
+                                @if (item.Produtos.Count < 10)
+                                {
+                                    @for (var i = item.Produtos.Count - 10; i < item.Produtos.Count; i++)
+                                    {
+                                        <tr style="height:15px">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        count++;
+    }
+}
+<script>
+
+    $('#form').submit(function() {
+        var panel = getLoadPanelInstance();
+        panel.show();
+    });
+
+    function OnInitialise(e) {
+        e.element.addClass("no-print");
+    }
+
+    function printReport() {
+        window.print();
+    }
+
+    function loadPanel_shown(e) {
+        //setTimeout(function() {
+        //    e.component.hide();
+        //}, 3000);
+    }
+
+    function loadPanel_hidden() {
+       
+    }
+
+
+    function getLoadPanelInstance() {
+        return $("#loadPanel").dxLoadPanel("instance");
+    }
+
+</script>

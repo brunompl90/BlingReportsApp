@@ -1,0 +1,3 @@
+﻿@using BlingReportsApp.Web
+@using BlingReportsApp.Web.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

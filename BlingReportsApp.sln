@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlingReportsApp.Console", "BlingReportsApp.Console\BlingReportsApp.Console.csproj", "{3B1746E6-C953-4527-BE8A-9D9D9D68C344}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlingReportsApp.Domain", "BlingReportsApp.Model\BlingReportsApp.Domain.csproj", "{F3441B93-1983-4646-AEDC-8B000B9FF6BD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlingReportsApp.Application", "BlingReportsApp.Application\BlingReportsApp.Application.csproj", "{E3FC556D-D933-4E89-AA61-DAB2ABDDA06B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlingReportsApp.Web", "BlingReportsApp.Web\BlingReportsApp.Web.csproj", "{E75B3DCA-B6AB-4717-88CC-44189696C91A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevExtreme NuGet.config", "DevExtreme NuGet.config", "{70827C45-DA39-4724-B331-4505D62D241D}"
+	ProjectSection(SolutionItems) = preProject
+		NuGet.config = NuGet.config
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B1746E6-C953-4527-BE8A-9D9D9D68C344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B1746E6-C953-4527-BE8A-9D9D9D68C344}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B1746E6-C953-4527-BE8A-9D9D9D68C344}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B1746E6-C953-4527-BE8A-9D9D9D68C344}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3441B93-1983-4646-AEDC-8B000B9FF6BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3441B93-1983-4646-AEDC-8B000B9FF6BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3441B93-1983-4646-AEDC-8B000B9FF6BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3441B93-1983-4646-AEDC-8B000B9FF6BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3FC556D-D933-4E89-AA61-DAB2ABDDA06B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3FC556D-D933-4E89-AA61-DAB2ABDDA06B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3FC556D-D933-4E89-AA61-DAB2ABDDA06B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3FC556D-D933-4E89-AA61-DAB2ABDDA06B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E75B3DCA-B6AB-4717-88CC-44189696C91A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E75B3DCA-B6AB-4717-88CC-44189696C91A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E75B3DCA-B6AB-4717-88CC-44189696C91A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E75B3DCA-B6AB-4717-88CC-44189696C91A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A4DC8049-6C27-4AEF-AA17-79663793425E}
+	EndGlobalSection
+EndGlobal
